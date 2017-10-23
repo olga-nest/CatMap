@@ -7,22 +7,31 @@
 //
 
 #import "ViewController.h"
+#import "PhotoCollectionViewCell.h"
 
-@interface ViewController ()
 
-//@property (nonatomic, strong) NSArray *readPhotosArray;
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UICollectionView *photoCollectionView;
+@property (strong, nonatomic) UICollectionViewFlowLayout *defaultLayout;
 @property (nonatomic, strong) NSMutableArray *allPhotos;
 
 @end
 
 @implementation ViewController
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *allPhotos = [NSMutableArray new];
+    self.photoCollectionView.delegate = self;
+    self.photoCollectionView.dataSource = self;
+    
+    [self setupDefaultLayout];
+    
+    self.photoCollectionView.collectionViewLayout = self.defaultLayout;
+    
     [self getCatPictures];
+    
+    
     
     
 }
@@ -95,7 +104,37 @@
                                                     }
                                                 }];
     [dataTask resume];
+    NSLog(@"Resuming dataTask");
 }
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
+    NSLog(@"Will show %lu items", self.allPhotos.count);
+    //return self.allPhotos.count;
+    return 50;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Creating PhotoCollectionViewCell cells");
+    
+    PhotoCollectionViewCell *cell = [self.photoCollectionView dequeueReusableCellWithReuseIdentifier:@"CellId" forIndexPath:indexPath];
+    
+    Photo *photo = [self.allPhotos objectAtIndex:indexPath.row];
+    cell.photoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photo.photoURL]];
+    cell.photoLabelView.text = photo.photoTitle;
+    return cell;
+}
+
+-(void)setupDefaultLayout {
+    NSLog(@"Setting default layout");
+    self.defaultLayout = [[UICollectionViewFlowLayout alloc] init];
+    
+    self.defaultLayout.itemSize = CGSizeMake(150, 150); // Set size of cell
+    self.defaultLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // "Border around each section"
+    self.defaultLayout.minimumInteritemSpacing = 15;  // Minimum horizontal spacing between cells
+    self.defaultLayout.minimumLineSpacing = 10;
+}
+
 
 
 @end
