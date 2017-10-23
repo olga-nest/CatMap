@@ -17,9 +17,13 @@
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSMutableArray *allPhotos = [NSMutableArray new];
     [self getCatPictures];
+    
     
 }
 
@@ -58,6 +62,10 @@
                                                             NSArray *readPhotosArray = [secondDict objectForKey:@"photo"];
                                                             NSLog(@"photosArray contains %lu objects", readPhotosArray.count);
                                                             
+                                                            if (!self.allPhotos) {
+                                                                self.allPhotos = [NSMutableArray new];
+                                                            }
+                                                            
                                                             for (NSDictionary *object in readPhotosArray) {
                                                                 
                                                                 //create url from pieces
@@ -70,15 +78,16 @@
                                                                 NSString *stringUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg", farmID, serverID, objectID, secret];
                                                                 
                                                                 NSURL *url = [NSURL URLWithString:stringUrl];
-                                                                NSLog(@"URL created: %@", url);
+                                                            //    NSLog(@"URL created: %@", url);
                                                                 
                                                                 //get title
                                                                 NSString *objectTitle = [object objectForKey:@"title"];
                                                                 //instantiate Photo
                                                                 Photo *photo = [[Photo alloc]initWithPhotoURL:url andTitle:objectTitle];
-                                                                [self.allPhotos addObject:photo];
-                                                                
                                                                 //add to array
+                                                                [self.allPhotos addObject:photo];
+                                                                NSLog(@"There are %lu objects in allPhotos array", self.allPhotos.count);
+                                                               
                                                             }
                                                         }
                                                         dispatch_async(dispatch_get_main_queue(), ^{
