@@ -13,4 +13,6 @@
 @property (nonatomic) NSString *photoTitle;
 @property (nonatomic) NSURL *photoURL;
 
+- (instancetype)initWithPhotoURL: (NSURL *) url andTitle: (NSString *)title;
+
 @end

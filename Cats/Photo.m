@@ -10,4 +10,14 @@
 
 @implementation Photo
 
+- (instancetype)initWithPhotoURL: (NSURL *) url andTitle: (NSString *)title
+{
+    self = [super init];
+    if (self) {
+        _photoURL = url;
+        _photoTitle = title;
+    }
+    return self;
+}
+
 @end
