@@ -41,13 +41,14 @@
             
             NSError *jsonError = nil;
             NSDictionary *readDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+            NSDictionary *secondDict = readDict.allValues[1];
             
             if (jsonError) {
                 NSLog(@"jsonError: %@", jsonError.localizedDescription);
             } else {
-                 NSLog(@"There are: %lu objects in readDict", (unsigned long)readDict.count);
+                 NSLog(@"There are: %lu objects in readDict", (unsigned long)secondDict.count);
                 
-                NSArray *photosArray = [readDict objectForKey:@"photo"];
+                NSArray *photosArray = [secondDict objectForKey:@"photo"];
                 NSLog(@"photosArray contains %lu objects", photosArray.count);
             }
             
