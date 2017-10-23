@@ -10,6 +10,9 @@
 
 @interface ViewController ()
 
+//@property (nonatomic, strong) NSArray *readPhotosArray;
+@property (nonatomic, strong) NSMutableArray *allPhotos;
+
 @end
 
 @implementation ViewController
@@ -36,7 +39,6 @@
                                                                     NSURLResponse *_Nullable response,
                                                                     NSError *_Nullable error) {
                                                     
-                                                    
                                                     if (error) {
                                                         NSLog(@"Error getting data");
                                                     } else {
@@ -52,20 +54,39 @@
                                                         } else {
                                                             NSLog(@"There are: %lu objects in readDict", (unsigned long)secondDict.count);
                                                             
-                                                            NSArray *photosArray = [secondDict objectForKey:@"photo"];
-                                                            NSLog(@"photosArray contains %lu objects", photosArray.count);
-                                                        }
-                                                        
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            //Array of dictionaries
+                                                            NSArray *readPhotosArray = [secondDict objectForKey:@"photo"];
+                                                            NSLog(@"photosArray contains %lu objects", readPhotosArray.count);
                                                             
+                                                            for (NSDictionary *object in readPhotosArray) {
+                                                                
+                                                                //create url from pieces
+                                                                
+                                                                NSString *farmID = [object objectForKey:@"farm"];
+                                                                NSString *serverID = [object objectForKey:@"server"];
+                                                                NSString *objectID = [object objectForKey:@"id"];
+                                                                NSString *secret = [object objectForKey:@"secret"];
+                                                                
+                                                                NSString *stringUrl = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg", farmID, serverID, objectID, secret];
+                                                                
+                                                                NSURL *url = [NSURL URLWithString:stringUrl];
+                                                                NSLog(@"URL created: %@", url);
+                                                                
+                                                                //get title
+                                                                NSString *objectTitle = [object objectForKey:@"title"];
+                                                                //instantiate Photo
+                                                                Photo *photo = [[Photo alloc]initWithPhotoURL:url andTitle:objectTitle];
+                                                                [self.allPhotos addObject:photo];
+                                                                
+                                                                //add to array
+                                                            }
+                                                        }
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
                                                         });
                                                     }
-                                                    
                                                 }];
-    
     [dataTask resume];
 }
-
 
 
 @end
