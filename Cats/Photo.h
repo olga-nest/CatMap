@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Photo : NSObject
 
 @property (nonatomic) NSString *photoTitle;
 @property (nonatomic) NSURL *photoURL;
+@property (nonatomic) UIImage *image;
 
-- (instancetype)initWithPhotoURL: (NSURL *) url andTitle: (NSString *)title;
+- (instancetype)initWithImage: (NSURL *) url andTitle: (NSString *)title;
 
 @end
