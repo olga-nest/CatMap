@@ -117,8 +117,12 @@
                                                                 
                                                                 //get title
                                                                 NSString *objectTitle = [object objectForKey:@"title"];
+                                                                
+                                                                //get photo id
+                                                                //reuse objectID
+                                                                
                                                                 //instantiate Photo
-                                                                Photo *photo = [[Photo alloc]initWithImage:url andTitle:objectTitle];
+                                                                Photo *photo = [[Photo alloc]initWithImage:url andTitle:objectTitle andId:objectID];
                                                                 //add to array
                                                                 [self.allPhotos addObject:photo];
                                                                 NSLog(@"There are %lu objects in allPhotos array", self.allPhotos.count);
