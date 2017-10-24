@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *defaultLayout;
 @property (nonatomic, strong) NSMutableArray *allPhotos;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -28,7 +29,7 @@
     [self setupDefaultLayout];
     
     self.photoCollectionView.collectionViewLayout = self.defaultLayout;
-    
+       
     [self getCatPictures];
     
     
@@ -37,6 +38,8 @@
 }
 
 -(void)getCatPictures {
+    [self.activityIndicator startAnimating];
+    
     NSString *dataUrl = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=b066df57d7b11069504a3b0819a67999&tags=cat";
     NSURL *url = [NSURL URLWithString:dataUrl];
     
@@ -101,6 +104,7 @@
                                                         dispatch_async(dispatch_get_main_queue(), ^{
                                                             //Reload data after data source is updated
                                                             [self.photoCollectionView reloadData];
+                                                            [self.activityIndicator stopAnimating];
                                                         });
                                                     }
                                                 }];
@@ -112,6 +116,7 @@
      numberOfItemsInSection:(NSInteger)section {
     NSLog(@"Will show %lu items", self.allPhotos.count);
     return self.allPhotos.count;
+    
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,6 +138,7 @@
     self.defaultLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // "Border around each section"
     self.defaultLayout.minimumInteritemSpacing = 15;  // Minimum horizontal spacing between cells
     self.defaultLayout.minimumLineSpacing = 10;
+    
 }
 
 
