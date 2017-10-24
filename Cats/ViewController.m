@@ -96,10 +96,10 @@
                                                                 //add to array
                                                                 [self.allPhotos addObject:photo];
                                                                 NSLog(@"There are %lu objects in allPhotos array", self.allPhotos.count);
-                                                               
                                                             }
                                                         }
                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                            [self.photoCollectionView reloadData];
                                                         });
                                                     }
                                                 }];
@@ -110,8 +110,7 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
     NSLog(@"Will show %lu items", self.allPhotos.count);
-    //return self.allPhotos.count;
-    return 50;
+    return self.allPhotos.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
