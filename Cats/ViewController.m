@@ -92,7 +92,7 @@
                                                                 //get title
                                                                 NSString *objectTitle = [object objectForKey:@"title"];
                                                                 //instantiate Photo
-                                                                Photo *photo = [[Photo alloc]initWithPhotoURL:url andTitle:objectTitle];
+                                                                Photo *photo = [[Photo alloc]initWithImage:url andTitle:objectTitle];
                                                                 //add to array
                                                                 [self.allPhotos addObject:photo];
                                                                 NSLog(@"There are %lu objects in allPhotos array", self.allPhotos.count);
@@ -120,7 +120,7 @@
     PhotoCollectionViewCell *cell = [self.photoCollectionView dequeueReusableCellWithReuseIdentifier:@"CellId" forIndexPath:indexPath];
     
     Photo *photo = [self.allPhotos objectAtIndex:indexPath.row];
-    cell.photoImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:photo.photoURL]];
+    cell.photoImageView.image = photo.image;
     cell.photoLabelView.text = photo.photoTitle;
     return cell;
 }
