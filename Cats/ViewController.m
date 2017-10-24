@@ -99,6 +99,7 @@
                                                             }
                                                         }
                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                            //Reload data after data source is updated
                                                             [self.photoCollectionView reloadData];
                                                         });
                                                     }
