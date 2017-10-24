@@ -5,6 +5,9 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,6 +40,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yc6-aN-H5G">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="129"/>
+                                            <gestureRecognizers/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn4-Pf-uMo">
                                             <rect key="frame" x="10" y="129" width="140" height="21"/>
@@ -61,6 +65,7 @@
                                 <connections>
                                     <outlet property="photoImageView" destination="Yc6-aN-H5G" id="FV6-lX-Ul1"/>
                                     <outlet property="photoLabelView" destination="tn4-Pf-uMo" id="ld1-iG-LY7"/>
+                                    <segue destination="n9E-oC-HJP" kind="show" identifier="detailViewSegue" id="ZZ2-Qv-ebG"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -78,6 +83,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUo-vP-8RN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1154.4000000000001" y="94.902548725637189"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="mO5-sC-UG1">
+            <objects>
+                <viewController id="n9E-oC-HJP" customClass="DetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4k4-nl-c0g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UEL-G0-CD9">
+                                <rect key="frame" x="19" y="236" width="337.5" height="333.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UEL-G0-CD9" secondAttribute="height" multiplier="337:333" id="eld-6L-4za"/>
+                                </constraints>
+                            </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rlA-ah-6C8">
+                                <rect key="frame" x="19" y="85" width="162" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="LOv-5X-DAq"/>
+                                    <constraint firstAttribute="width" secondItem="rlA-ah-6C8" secondAttribute="height" multiplier="81:64" id="yee-QZ-IL9"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cue-zH-PNr">
+                                <rect key="frame" x="189" y="85" width="168" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UEL-G0-CD9" firstAttribute="top" secondItem="Cue-zH-PNr" secondAttribute="bottom" constant="23" id="46D-Xw-TVe"/>
+                            <constraint firstItem="UEL-G0-CD9" firstAttribute="top" secondItem="rlA-ah-6C8" secondAttribute="bottom" constant="23" id="4fv-qi-cw2"/>
+                            <constraint firstItem="kmv-I1-G9l" firstAttribute="trailing" secondItem="Cue-zH-PNr" secondAttribute="trailing" constant="18" id="CGW-8p-UYi"/>
+                            <constraint firstItem="rlA-ah-6C8" firstAttribute="leading" secondItem="kmv-I1-G9l" secondAttribute="leading" constant="19" id="HAp-Ke-51B"/>
+                            <constraint firstItem="Cue-zH-PNr" firstAttribute="top" secondItem="kmv-I1-G9l" secondAttribute="top" constant="21" id="Npy-uH-jEh"/>
+                            <constraint firstItem="UEL-G0-CD9" firstAttribute="centerX" secondItem="kmv-I1-G9l" secondAttribute="centerX" id="nds-wX-eGR"/>
+                            <constraint firstItem="Cue-zH-PNr" firstAttribute="leading" secondItem="rlA-ah-6C8" secondAttribute="trailing" constant="8" id="pEj-zI-e7n"/>
+                            <constraint firstItem="Cue-zH-PNr" firstAttribute="height" secondItem="rlA-ah-6C8" secondAttribute="height" id="pWb-zc-8b0"/>
+                            <constraint firstItem="UEL-G0-CD9" firstAttribute="width" secondItem="4k4-nl-c0g" secondAttribute="width" multiplier="0.9" id="qgH-TW-3Fx"/>
+                            <constraint firstItem="rlA-ah-6C8" firstAttribute="top" secondItem="kmv-I1-G9l" secondAttribute="top" constant="21" id="ywU-00-dMz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kmv-I1-G9l"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rp3-Jc-f6t"/>
+                    <connections>
+                        <outlet property="detailMapView" destination="UEL-G0-CD9" id="gHG-CB-Kui"/>
+                        <outlet property="detailPhotoView" destination="rlA-ah-6C8" id="kND-Q0-rMf"/>
+                        <outlet property="detailTextView" destination="Cue-zH-PNr" id="AhL-Q4-gXA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="koO-kZ-wE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1869.5999999999999" y="92.203898050974516"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dml-Tb-P2r">

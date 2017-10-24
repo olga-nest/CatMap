@@ -165,6 +165,20 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"detailViewSegue"]) {
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
+        
+        Photo *photo = self.allPhotos[indexPath.item];
+        DetailViewController *detailViewController = (DetailViewController *) [segue destinationViewController];;
+        [detailViewController setPhoto:photo];
+
+    } else {
+        NSLog(@"Oops, something went wrong... Bummer");
+    }
+}
+
 -(void)setupDefaultLayout {
     NSLog(@"Setting default layout");
     self.defaultLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -173,7 +187,6 @@
     self.defaultLayout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // "Border around each section"
     self.defaultLayout.minimumInteritemSpacing = 15;  // Minimum horizontal spacing between cells
     self.defaultLayout.minimumLineSpacing = 10;
-    
 }
 
 
