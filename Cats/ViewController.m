@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSMutableArray *allPhotos;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (nonatomic) NSURL *url;
+
 @end
 
 @implementation ViewController
@@ -32,23 +34,44 @@
        
     [self getCatPictures];
     
+}
+
+
+-(NSURL *)constructURL {
     
+    NSDictionary *queriesDict = @{@"method" : @"flickr.photos.search",
+                              @"api_key" : @"b066df57d7b11069504a3b0819a67999",
+                              @"tags" : @"cat",
+                              @"has_geo" : @"1",
+                              @"extras" : @"url_m",
+                              @"format" : @"json",
+                              @"nojsoncallback" : @"1"};
     
+    NSMutableArray *queries = [NSMutableArray new];
+    for (NSString *key in queriesDict) {
+        [queries addObject:[NSURLQueryItem queryItemWithName:key value:queriesDict[key]]];
+    }
     
+    NSURLComponents *components = [NSURLComponents new];
+    components.scheme = @"https";
+    components.host = @"api.flickr.com";
+    components.path = @"/services/rest/";
+    components.queryItems = queries;
+    
+    NSURL *url = components.URL;
+    NSLog(@"URL created: %@", url);
+    
+    return url;
 }
 
 -(void)getCatPictures {
     [self.activityIndicator startAnimating];
     
-    NSString *dataUrl = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=b066df57d7b11069504a3b0819a67999&tags=cat";
-    NSURL *url = [NSURL URLWithString:dataUrl];
-    
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[self constructURL]];
     [urlRequest setHTTPMethod:@"GET"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest
                                                 completionHandler:^(NSData *_Nullable data,
@@ -56,7 +79,7 @@
                                                                     NSError *_Nullable error) {
                                                     
                                                     if (error) {
-                                                        NSLog(@"Error getting data");
+                                                        NSLog(@"Error getting data: %@", error.localizedDescription);
                                                     } else {
                                                         NSLog(@"RESPONSE: %@", response);
                                                         NSLog(@"DATA: %@", data);
