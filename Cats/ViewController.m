@@ -122,14 +122,14 @@
                                                                 //reuse objectID
                                                                 
                                                                 //get photo location
-                                                                double lon = [[object objectForKey:@"longitude"]integerValue];
-                                                                double lat = [[object objectForKey:@"latitude"]integerValue];
-                                                                
-                                                                CLLocationCoordinate2D photoLocation = CLLocationCoordinate2DMake(lat, lon);
-                                                                
+//                                                                double lon = [[object objectForKey:@"longitude"]integerValue];
+//                                                                double lat = [[object objectForKey:@"latitude"]integerValue];
+//
+//                                                                CLLocationCoordinate2D photoLocation = CLLocationCoordinate2DMake(lat, lon);
+//
                                                                 //instantiate Photo
                                                                 Photo *photo = [[Photo alloc]initWithImage:url andTitle:objectTitle andId:objectID];
-                                                                photo.coordinate = photoLocation;
+//                                                                photo.coordinate = photoLocation;
                                                                 
                                                                 //add to array
                                                                 [self.allPhotos addObject:photo];
