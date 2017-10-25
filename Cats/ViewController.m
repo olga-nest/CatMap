@@ -10,7 +10,7 @@
 #import "PhotoCollectionViewCell.h"
 
 
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate, SearchTagDelegate>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *defaultLayout;
@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic) NSURL *url;
+@property (nonatomic) NSString *tag;
 
 @end
 
@@ -25,8 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tag = @"cat";
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self;
+    
+    
     
     [self setupDefaultLayout];
     
@@ -41,7 +45,7 @@
     
     NSDictionary *queriesDict = @{@"method" : @"flickr.photos.search",
                               @"api_key" : @"b066df57d7b11069504a3b0819a67999",
-                              @"tags" : @"cat",
+                              @"tags" : self.tag,
                               @"has_geo" : @"1",
                               @"extras" : @"url_m",
                               @"format" : @"json",
@@ -187,5 +191,9 @@
 - (IBAction)search:(UIBarButtonItem *)sender {
     
 }
+
+- (void)insertNewTag: (NSString *) usersTag {
+    self.tag = usersTag;
+ }
 
 @end
