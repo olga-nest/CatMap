@@ -18,13 +18,45 @@
                     <view key="view" contentMode="scaleToFill" id="YGo-dt-VTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-hp-g7i">
+                                <rect key="frame" x="19" y="43" width="337.5" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihk-aU-7rR">
+                                <rect key="frame" x="157" y="326.5" width="60" height="33"/>
+                                <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Iat-sF-XoC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveSearchInput:" destination="tG4-Gf-wwG" eventType="touchUpInside" id="kgE-47-Wnm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ihk-aU-7rR" firstAttribute="centerY" secondItem="Jh5-Xo-ThB" secondAttribute="centerY" id="8Bv-OA-lpX"/>
+                            <constraint firstItem="oWC-hp-g7i" firstAttribute="centerX" secondItem="Jh5-Xo-ThB" secondAttribute="centerX" id="CJH-id-1sg"/>
+                            <constraint firstItem="oWC-hp-g7i" firstAttribute="width" secondItem="YGo-dt-VTY" secondAttribute="width" multiplier="0.9" id="D9r-fg-mkD"/>
+                            <constraint firstItem="Ihk-aU-7rR" firstAttribute="centerX" secondItem="Jh5-Xo-ThB" secondAttribute="centerX" id="FVX-vO-UgJ"/>
+                            <constraint firstItem="oWC-hp-g7i" firstAttribute="top" secondItem="Jh5-Xo-ThB" secondAttribute="top" constant="23" id="O6X-Ch-Gq4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jh5-Xo-ThB"/>
                     </view>
+                    <connections>
+                        <outlet property="searchTextField" destination="oWC-hp-g7i" id="gWR-Wa-QyV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rG-yD-sqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="-618"/>
+            <point key="canvasLocation" x="1152.8" y="-618.44077961019491"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nZX-K9-BEo">
