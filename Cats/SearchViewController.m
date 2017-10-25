@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 
 @interface SearchViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
 @end
 
@@ -17,7 +18,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
    }
+
+- (IBAction)saveSearchInput:(UIButton *)sender {
+    NSString *tag = self.searchTextField.text;
+    
+    NSLog(@"Saving tag: %@", tag);
+    
+//    [self.delegate insertNewTag:tag];
+    [self dismissViewControllerAnimated:true completion:nil];
+    
+    
+}
+
+
 
 
 @end

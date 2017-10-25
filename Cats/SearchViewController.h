@@ -8,6 +8,15 @@
 
 #import "ViewController.h"
 
+@protocol SearchTagDelegate <NSObject>
+
+- (void)insertNewTag: (NSString *) usersTag;
+
+@end
+
+
 @interface SearchViewController : UIViewController
+
+@property (nonatomic, weak) id <SearchTagDelegate> delegate;
 
 @end
