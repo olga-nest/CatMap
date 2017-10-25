@@ -86,8 +86,16 @@ static NSString * const reuseIdentifier = @"Cell";
                     MKCoordinateSpan span = MKCoordinateSpanMake(.5f, .5f);
                     self.detailMapView.region = MKCoordinateRegionMake(self.photo.coordinate, span);
                     
+                    MKPointAnnotation *photoAnnotation = [[MKPointAnnotation alloc]init];
+                    photoAnnotation.coordinate = coordinates;
+                    NSLog(@"Photo title: %@", self.photo.photoTitle);
+                    NSString *title = self.photo.photoTitle;
+                    [photoAnnotation setTitle:title];
+                    NSLog(@"Adding title to annotation: %@", photoAnnotation.title);
+                    
+                    
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [self.detailMapView addAnnotation:self.photo];
+                        [self.detailMapView addAnnotation:photoAnnotation];
                     }];
                     
                 }
