@@ -11,6 +11,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="IWF-lG-zCQ">
+            <objects>
+                <viewController id="tG4-Gf-wwG" customClass="SearchViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YGo-dt-VTY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Jh5-Xo-ThB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2rG-yD-sqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1154" y="-618"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="nZX-K9-BEo">
             <objects>
@@ -74,7 +89,14 @@
                             <outlet property="delegate" destination="QyB-pP-uwH" id="qJO-wF-Lkx"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="BIt-3X-8tU"/>
+                    <navigationItem key="navigationItem" id="BIt-3X-8tU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="jZZ-co-5ZE">
+                            <connections>
+                                <action selector="search:" destination="QyB-pP-uwH" id="QZQ-m2-G3q"/>
+                                <segue destination="tG4-Gf-wwG" kind="presentation" identifier="searchSegue" id="g1A-My-7nv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="zgn-Yc-MmN" id="Gnz-mL-QLa"/>
                         <outlet property="photoCollectionView" destination="cJP-kN-IqM" id="3Se-n0-sfW"/>
@@ -128,7 +150,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kmv-I1-G9l"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Rp3-Jc-f6t"/>
                     <connections>
                         <outlet property="detailMapView" destination="UEL-G0-CD9" id="gHG-CB-Kui"/>
                         <outlet property="detailPhotoView" destination="rlA-ah-6C8" id="kND-Q0-rMf"/>
