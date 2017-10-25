@@ -77,8 +77,9 @@ static NSString * const reuseIdentifier = @"Cell";
                     //Dictionarie with all photo location Data
                     NSDictionary *locationDataDictionary = secondDict.allValues[1];
                     
-                    double lat = [[locationDataDictionary objectForKey:@"latitude"]integerValue];
-                    double lon = [[locationDataDictionary objectForKey:@"longitude"]integerValue];
+                    double lat = [[locationDataDictionary objectForKey:@"latitude"]doubleValue];
+                    double lon = [[locationDataDictionary objectForKey:@"longitude"]doubleValue];
+                    NSLog(@"Creating coordinates: lat: %f, lon: %f", lat, lon);
                     
                     CLLocationCoordinate2D coordinates = CLLocationCoordinate2DMake(lat, lon);
                     self.photo.coordinate = coordinates;
