@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tG4-Gf-wwG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SU1-b5-GMe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -20,13 +20,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWC-hp-g7i">
-                                <rect key="frame" x="19" y="43" width="337.5" height="30"/>
+                                <rect key="frame" x="19" y="87" width="337.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihk-aU-7rR">
-                                <rect key="frame" x="157" y="326.5" width="60" height="33"/>
+                                <rect key="frame" x="157" y="349" width="60" height="33"/>
                                 <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Iat-sF-XoC"/>
@@ -37,6 +37,7 @@
                                 </state>
                                 <connections>
                                     <action selector="saveSearchInput:" destination="tG4-Gf-wwG" eventType="touchUpInside" id="kgE-47-Wnm"/>
+                                    <segue destination="QyB-pP-uwH" kind="show" identifier="searchToCollection" id="ByM-z7-v9f"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -50,13 +51,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jh5-Xo-ThB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nz1-St-scM"/>
                     <connections>
                         <outlet property="searchTextField" destination="oWC-hp-g7i" id="gWR-Wa-QyV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rG-yD-sqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152.8" y="-618.44077961019491"/>
+            <point key="canvasLocation" x="1194" y="-800"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nZX-K9-BEo">
@@ -203,12 +205,15 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="QyB-pP-uwH" kind="relationship" relationship="rootViewController" id="QzP-cX-Yzt"/>
+                        <segue destination="tG4-Gf-wwG" kind="relationship" relationship="rootViewController" id="yPE-3r-vsK"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWJ-hE-0Gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="95"/>
+            <point key="canvasLocation" x="287" y="-800"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yPE-3r-vsK"/>
+    </inferredMetricsTieBreakers>
 </document>
