@@ -19,6 +19,8 @@
 @property (nonatomic) NSString *format;
 @property (nonatomic) NSString *nojsoncallback;
 
+@property (nonatomic) NSURL *urlCreatedFromSearch;
+
 @end
 
 @implementation SearchViewController
@@ -27,6 +29,7 @@
     [super viewDidLoad];
     [self getDefaultValuesForURL];
     
+    [self.delegate getSearchURL:self.urlCreatedFromSearch];
    }
 
 - (IBAction)saveSearchInput:(UIButton *)sender {
@@ -61,10 +64,10 @@
     components.path = @"/services/rest/";
     components.queryItems = queries;
     
-    NSURL *url = components.URL;
-    NSLog(@"URL created: %@", url);
+    self.urlCreatedFromSearch = components.URL;
+    NSLog(@"URL created: %@", self.urlCreatedFromSearch);
     
-    return url;
+    return self.urlCreatedFromSearch;
 }
 
 -(void)getDefaultValuesForURL {
