@@ -36,7 +36,7 @@
     
     self.photoCollectionView.collectionViewLayout = self.defaultLayout;
        
-    [self getCatPictures];
+    [self getPictures];
     
 }
 
@@ -68,7 +68,7 @@
     return url;
 }
 
--(void)getCatPictures {
+-(void)getPictures {
     [self.activityIndicator startAnimating];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[self constructURL]];
