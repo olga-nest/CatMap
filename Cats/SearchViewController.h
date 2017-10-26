@@ -10,7 +10,7 @@
 
 @protocol SearchTagDelegate <NSObject>
 
-- (void)insertNewTag: (NSString *) usersTag;
+- (void)getSearchURL: (NSURL *) url;
 
 @end
 
@@ -18,5 +18,6 @@
 @interface SearchViewController : UIViewController
 
 @property (nonatomic, weak) id <SearchTagDelegate> delegate;
+- (NSURL *)constructURL;
 
 @end

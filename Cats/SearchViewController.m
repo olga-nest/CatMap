@@ -11,13 +11,21 @@
 @interface SearchViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 
+@property (nonatomic) NSString *method;
+@property (nonatomic) NSString *api_key;
+@property (nonatomic) NSString *tags;
+@property (nonatomic) NSString *has_geo;
+@property (nonatomic) NSString *extras;
+@property (nonatomic) NSString *format;
+@property (nonatomic) NSString *nojsoncallback;
+
 @end
 
 @implementation SearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self getDefaultValuesForURL];
     
    }
 
@@ -25,13 +33,49 @@
     NSString *tag = self.searchTextField.text;
     
     NSLog(@"Saving tag: %@", tag);
-    
-//    [self.delegate insertNewTag:tag];
+    self.tags = tag;
+    [self constructURL];
+
     [self dismissViewControllerAnimated:true completion:nil];
-    
     
 }
 
+-(NSURL *)constructURL {
+    
+    NSDictionary *queriesDict = @{@"method" : self.method,
+                                  @"api_key" : self.api_key,
+                                  @"tags" : self.tags,
+                                  @"has_geo" : self.has_geo,
+                                  @"extras" : self.extras,
+                                  @"format" : self.format,
+                                  @"nojsoncallback" : self.nojsoncallback};
+    
+    NSMutableArray *queries = [NSMutableArray new];
+    for (NSString *key in queriesDict) {
+        [queries addObject:[NSURLQueryItem queryItemWithName:key value:queriesDict[key]]];
+    }
+    
+    NSURLComponents *components = [NSURLComponents new];
+    components.scheme = @"https";
+    components.host = @"api.flickr.com";
+    components.path = @"/services/rest/";
+    components.queryItems = queries;
+    
+    NSURL *url = components.URL;
+    NSLog(@"URL created: %@", url);
+    
+    return url;
+}
+
+-(void)getDefaultValuesForURL {
+    self.method = @"flickr.photos.search";
+    self.api_key = @"b066df57d7b11069504a3b0819a67999";
+    self.tags = @"cat";
+    self.has_geo = @"1";
+    self.extras = @"url_m";
+    self.format = @"json";
+    self.nojsoncallback = @"1";
+}
 
 
 
