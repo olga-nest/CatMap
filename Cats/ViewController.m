@@ -18,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic) NSURL *url;
-@property (nonatomic) NSString *tag;
+//@property (nonatomic) NSString *tag;
+@property (nonatomic) NSURL *urlFromSearch;
 
 @end
 
@@ -26,14 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tag = @"cat";
+//    self.tag = @"cat";
     self.photoCollectionView.delegate = self;
     self.photoCollectionView.dataSource = self;
     
-    
-    
+
     [self setupDefaultLayout];
-    
     self.photoCollectionView.collectionViewLayout = self.defaultLayout;
        
     [self getPictures];
@@ -41,37 +40,37 @@
 }
 
 
--(NSURL *)constructURL {
-    
-    NSDictionary *queriesDict = @{@"method" : @"flickr.photos.search",
-                              @"api_key" : @"b066df57d7b11069504a3b0819a67999",
-                              @"tags" : self.tag,
-                              @"has_geo" : @"1",
-                              @"extras" : @"url_m",
-                              @"format" : @"json",
-                              @"nojsoncallback" : @"1"};
-    
-    NSMutableArray *queries = [NSMutableArray new];
-    for (NSString *key in queriesDict) {
-        [queries addObject:[NSURLQueryItem queryItemWithName:key value:queriesDict[key]]];
-    }
-    
-    NSURLComponents *components = [NSURLComponents new];
-    components.scheme = @"https";
-    components.host = @"api.flickr.com";
-    components.path = @"/services/rest/";
-    components.queryItems = queries;
-    
-    NSURL *url = components.URL;
-    NSLog(@"URL created: %@", url);
-    
-    return url;
-}
+//-(NSURL *)constructURL {
+//
+//    NSDictionary *queriesDict = @{@"method" : @"flickr.photos.search",
+//                              @"api_key" : @"b066df57d7b11069504a3b0819a67999",
+//                              @"tags" : self.tag,
+//                              @"has_geo" : @"1",
+//                              @"extras" : @"url_m",
+//                              @"format" : @"json",
+//                              @"nojsoncallback" : @"1"};
+//
+//    NSMutableArray *queries = [NSMutableArray new];
+//    for (NSString *key in queriesDict) {
+//        [queries addObject:[NSURLQueryItem queryItemWithName:key value:queriesDict[key]]];
+//    }
+//
+//    NSURLComponents *components = [NSURLComponents new];
+//    components.scheme = @"https";
+//    components.host = @"api.flickr.com";
+//    components.path = @"/services/rest/";
+//    components.queryItems = queries;
+//
+//    NSURL *url = components.URL;
+//    NSLog(@"URL created: %@", url);
+//
+//    return url;
+//}
 
 -(void)getPictures {
     [self.activityIndicator startAnimating];
     
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[self constructURL]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.urlFromSearch];
     [urlRequest setHTTPMethod:@"GET"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -192,8 +191,8 @@
     
 }
 
-- (void)insertNewTag: (NSString *) usersTag {
-    self.tag = usersTag;
+- (void)getSearchURL: (NSURL *) url{
+    self.urlFromSearch = url;
  }
 
 @end
