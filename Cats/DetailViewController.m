@@ -104,9 +104,6 @@ static NSString * const reuseIdentifier = @"Cell";
         }];
         
         [dataTask resume];
-        
-        //    return nil;
-  //  }
 }
 
 @end

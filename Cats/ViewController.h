@@ -10,8 +10,12 @@
 #import <MapKit/MapKit.h>
 #import "Photo.h"
 #import "DetailViewController.h"
+#import "SearchViewController.h"
+
+
 
 @interface ViewController : UICollectionViewController
+
 
 
 @end
