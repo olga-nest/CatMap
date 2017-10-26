@@ -15,7 +15,7 @@
 @end
 
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController 
 
 @property (nonatomic, weak) id <SearchTagDelegate> delegate;
 - (NSURL *)constructURL;

@@ -34,7 +34,7 @@
 
     [self setupDefaultLayout];
     self.photoCollectionView.collectionViewLayout = self.defaultLayout;
-       
+    
     [self getPictures];
     
 }
@@ -70,6 +70,7 @@
 -(void)getPictures {
     [self.activityIndicator startAnimating];
     
+    NSLog(@"Creating urlRequest with: %@", self.urlFromSearch);
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.urlFromSearch];
     [urlRequest setHTTPMethod:@"GET"];
     
@@ -170,7 +171,7 @@
 
     } else if ([segue.identifier isEqualToString:@"searchSegue"]){
         SearchViewController *searchViewController = (SearchViewController *) [segue destinationViewController];
-        
+      //  searchViewController.delegate = self;
     } else {
         NSLog(@"Oops, something went wrong... Bummer");
     }

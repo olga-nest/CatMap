@@ -29,7 +29,6 @@
     [super viewDidLoad];
     [self getDefaultValuesForURL];
     
-    [self.delegate getSearchURL:self.urlCreatedFromSearch];
    }
 
 - (IBAction)saveSearchInput:(UIButton *)sender {
@@ -38,8 +37,7 @@
     NSLog(@"Saving tag: %@", tag);
     self.tags = tag;
     [self constructURL];
-
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.delegate getSearchURL:self.urlCreatedFromSearch];
     
 }
 
@@ -80,6 +78,14 @@
     self.nojsoncallback = @"1";
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(nullable id)sender {
+    if ([segue.identifier isEqualToString:@"searchToCollection"]){
+    ViewController *viewController = (ViewController *) [segue destinationViewController];
+        self.delegate = viewController; }
+    else {
+        NSLog(@"Bummer...");
+    }
+}
 
 
 @end
