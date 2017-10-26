@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -26,13 +27,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihk-aU-7rR">
-                                <rect key="frame" x="157" y="349" width="60" height="33"/>
+                                <rect key="frame" x="147" y="349" width="80" height="33"/>
                                 <color key="backgroundColor" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Iat-sF-XoC"/>
+                                    <constraint firstAttribute="width" constant="80" id="Iat-sF-XoC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Search">
                                     <color key="titleColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
