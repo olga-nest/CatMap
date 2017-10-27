@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @protocol SearchTagDelegate <NSObject>
 
